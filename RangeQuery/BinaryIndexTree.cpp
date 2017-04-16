@@ -26,3 +26,9 @@ int sum(int x) {
 int query(int l,int r) {
     return sum(r)-sum(l-1);
 }
+
+// Another version
+inline int f (int x) { return x & -x; }
+inline void add (int x) { for (int i = x; i < N; i += f (i)) c[i]++; }
+inline void clear (int x) { for (int i = x; i < N; i += f (i)) c[i] = 0; }
+inline int qry (int x) { int r = 0; for (int i = x; i; i -= f (i)) r += c[i]; return r; }

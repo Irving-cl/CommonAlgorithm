@@ -28,7 +28,21 @@ int query(int l,int r) {
 }
 
 // Another version
-inline int f (int x) { return x & -x; }
-inline void add (int x) { for (int i = x; i < N; i += f (i)) c[i]++; }
-inline void clear (int x) { for (int i = x; i < N; i += f (i)) c[i] = 0; }
-inline int qry (int x) { int r = 0; for (int i = x; i; i -= f (i)) r += c[i]; return r; }
+inline int f(int x) { return x & -x; }
+inline void add(int x) { for (int i = x; i < N; i += f (i)) c[i]++; }
+inline void clear(int x) { for (int i = x; i < N; i += f (i)) c[i] = 0; }
+inline int qry(int x) { int r = 0; for (int i = x; i; i -= f (i)) r += c[i]; return r; }
+
+// Class version
+class BIT
+{
+public:
+    BIT(int n):N(n),c(vector<int>(n)){}
+    int f (int x) { return x & -x; }
+    void add (int x) { for (int i = x; i < N; i += f (i)) c[i]++; }
+    void clear (int x) { for (int i = x; i < N; i += f (i)) c[i] = 0; }
+    int qry (int x) { int r = 0; for (int i = x; i; i -= f (i)) r += c[i]; return r; }    
+private:
+    vector<int> c;
+    int N;
+};
